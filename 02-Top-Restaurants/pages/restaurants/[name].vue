@@ -7,33 +7,42 @@
 </script>
 
 <template>
-    <div>
-      <div v-if="restaurant" class="restaurant-container">
-        <div class="image-container">
-          <img :src="restaurant.imageUrl" alt="" />
-        </div>
-        <div class="info-container">
-          <h1>{{ restaurant.name }}</h1>
-          <div class="stats-container">
-            <h5>Revenue (in billions)</h5>
-            <p>${{ restaurant.revenue }}</p>
+    <div>      
+      <NuxtLayout name="custom" v-if="restaurant">
+        <div class="restaurant-container" >      
+          <div class="image-container">
+            <img :src="restaurant.imageUrl" alt="" />
           </div>
-          <div class="stats-container">
-            <h5>Number of Stores</h5>
-            <p>{{ restaurant.numberOfStores }}</p>
-          </div>
-          <p class="content">{{ restaurant.content }}</p>
+          <div class="info-container">
+            <h1>{{ restaurant.name }}</h1>
+            <div class="stats-container">
+              <h5>Revenue (in billions)</h5>
+              <p>${{ restaurant.revenue }}</p>
+            </div>
+            <div class="stats-container">
+              <h5>Number of Stores</h5>
+              <p>{{ restaurant.numberOfStores }}</p>
+            </div>
+            <p class="content">{{ restaurant.content }}</p>
+          </div>        
         </div>
-      </div>
-      <div v-else class="restaurant-not-found">
-        <h1>Restaurant not found</h1>
-        <button
-          class="btn btn-primary btn-lg"
-          @click="$router.push('/restaurants')"
-        >
-          Go Back
-        </button>
-      </div>
+      </NuxtLayout>
+      
+       <div v-else class="restaurant-not-found">
+          <NuxtLayout name="error">
+            <template #header>
+                <h1>Restaurant not found</h1>
+              </template>
+              <template #redirectEl>
+                <button
+                  class="btn btn-primary btn-lg"
+                  @click="$router.push('/restaurants')"
+                >
+                  Go Back
+                </button>
+              </template>
+          </NuxtLayout> 
+        </div>      
     </div>
   </template>
   
@@ -56,6 +65,10 @@
     align-items: center;
     justify-content: center;
   }
+  .restaurant-not-found img {
+    width: 10rem;
+  }
+
   .info-container {
     padding: 3rem;
     width: 50%;
