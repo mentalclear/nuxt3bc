@@ -4,6 +4,15 @@
     const route = useRoute();
     const pathName = route.params.name;
     const restaurant = restaurants.find((res) => res.name === pathName);
+    
+    // Dynamicaly assigned title
+    useHead({     
+      titleTemplate: () => {
+        return restaurant 
+          ? `${pathName}`
+          : '404 - Restaurant Not Found'          
+      }
+    })
 </script>
 
 <template>
