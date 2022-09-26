@@ -1,0 +1,13 @@
+POST http://localhost:3000/api/todo
+
+{
+    "item" : "Make my bed"
+}
+
+
+### 
+
+PUT http://localhost:3000/api/todo/248dfe7b-016a-4e62-8cde-d51aa57472b6
+
+###
+DELETE http://localhost:3000/api/todo/248dfe7b-016a-4e62-8cde-d51aa57472b
